@@ -1,0 +1,44 @@
+.app {
+  margin: 0 auto;
+  width: 40%;
+  transform: translateY(40%);
+}
+.container {
+  display: flex;
+}
+#input-job {
+  margin: 0 auto;
+  display: flex;
+}
+
+#trash-icon {
+  align-items: flex-end;
+  transform: translateX(10%);
+}
+
+#detail {
+  width: 100%;
+}
+
+#content {
+  display: flex;
+  width: 100%;
+}
+#input-feild {
+  width: 70%;
+  display: flex;
+  margin: 0 auto;
+}
+#input-job {
+  margin: 0 auto;
+  display: flex;
+}
+ol {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+}
+
+li {
+  display: flex;
+}
