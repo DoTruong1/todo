@@ -17,11 +17,14 @@ const Job = ({item, onChange, index, handleDelete}) => {
             <React.Fragment>
                 <div>
                     <input 
+                    item = {item}
+                    id = {item.id}
                     className = "form-check-input me-1"
-                    value = {item.content } 
+                    value = {item.content} 
                     type = "checkbox"
                     style={{ alignSelf :"center"}}
-                    onChange = { () => onChange(item)}     
+                    index = {index}
+                    onChange = { (e) => onChange(e, item, index)}     
                     />
                 </div>
                 <div>

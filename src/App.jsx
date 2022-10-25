@@ -22,7 +22,7 @@ const INITIALIZEJOBS = [
   },
   {
     id: '3',
-    content: "Job3",
+    content: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
     status: false
   },
 ]
@@ -30,18 +30,13 @@ const App = () => {
   
   const [job, setJob] = useState ('');
   const [cardList, setCardList] = useState(INITIALIZEJOBS);    
-  const handleCheck = (position) => {
-    var updatedList = [...cardList];
-    // console.log(updatedList)
-    updatedList.map(
-      (item, index) => {
-        // console.log(item);
-        return index === position ? setCardList([...updatedList, {status : true}]) : item;
-      }
-    );
-    // console.log(updatedList);
-    setCardList(cardList => updatedList);
+  const handleCheck = (event, item, index) => {
+    let prev = [...cardList];
+    let itemIndex = prev.indexOf(item);
+    console.log(itemIndex);
   }
+
+  
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -66,9 +61,11 @@ const App = () => {
   }
 
   useEffect(() => {
-    console.log('effetct');
-    console.log(cardList);
-    console.log('effetct');
+    const changeStatus = async () => {
+      const newArr = await Promise.all(cardList.map(async item => {
+
+      }))
+    }
   }, [cardList])
 
   const listGen = cardList.map((item, index) => 
