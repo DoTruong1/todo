@@ -1,14 +1,26 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+// import allReducer from "./reducers/reducers";
+import todoReducer from "./reducers/todoReducer";
+import { Provider } from "react-redux";
+import reportWebVitals from "./reportWebVitals";
+import { configureStore } from "@reduxjs/toolkit";
+const root = ReactDOM.createRoot(document.getElementById("root"));
+const store = configureStore(
+  {
+    reducer: {
+      todos: todoReducer,
+    },
+  },
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 root.render(
-  
+  <Provider store={store}>
     <App />
-  
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function
