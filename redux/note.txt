@@ -1,0 +1,31 @@
+- pure funtion:
+    -> khi cho cùng 1 input thì phải ra cùng 1 output.
+        -> VD add(1,2) luôn cho ra kq 3 chứ ko phải cái gì khác
+    -> không có side effect.
+        -> ko có sự chỉnh sửa input
+            -> VD khi truyền 1 mảng gồm 1,2,3 thì sau khi kết thúc mảng này vẫn phải là 1,2,3
+        -> Modifying any other state outside the function, like global variables, or document.(anything) or window.(anything)
+        -> making api calls
+        -> console.log
+        -> math.random()
+
+- JS Array methods that mutable:
+    + push(add item to the end)
+    + pop (remove from the end)
+    + shift (remove an item from beggining)
+    + unshift (move an item from begining);
+    + sort
+    + reverse
+    + splice
+
+    example of immutable array sort:
+        => let sortedArray = [...originalArray].sort(compareFunction);
+            => note that: compareFunction must return 0, -1 or 1
+
+- Pure Functions Can Only Call Other Pure Functions
+- Pure Functions Return Brand New Objects
+
+###note that 'const' not prevent change neither 'let' nor 'var' sẽ ngăn dev thay đổi bên trong
+    => const only prevent us from reassigning the reference 
+    Tips: dùng const như là 1 reminder rằng là Objects hay array đó ko nên là mutable
+        nếu biết chắc chắn array đó là mutable thì nên declare là 'let' 

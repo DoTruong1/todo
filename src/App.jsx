@@ -3,8 +3,6 @@ import './App.css';
 import { useState } from 'react';
 import Job from './Jobs';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Button } from 'react-bootstrap';
-import{BiMessageRoundedMinus, BiTrash} from 'react-icons/bi'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -39,7 +37,7 @@ const App = () => {
         }
         return items;
       });
-      console.log(newState);
+      // console.log(newState);
       setCardList(newState);
   }
 
@@ -68,11 +66,7 @@ const App = () => {
   }
 
   useEffect(() => {
-    const changeStatus = async () => {
-      const newArr = await Promise.all(cardList.map(async item => {
-
-      }))
-    }
+    console.log(cardList);
   }, [cardList])
 
   const listGen = cardList.map((item, index) => 
@@ -123,7 +117,7 @@ const App = () => {
       <div id = "content">
         <DragDropContext id = "content" onDragEnd={handleOnDragEnd}>
         <Droppable droppableId = "droppable">
-          {(provided, snapshot) => (
+          {(provided) => (
             
             <div
               className = "list-group list-group-flush"
