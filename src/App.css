@@ -37,6 +37,15 @@
   
 }
 
+#detail-done {
+  width: 100%;
+  align-self: flex-end;
+  word-break: break-all;
+  word-wrap: break-word;
+  white-space: normal;
+  text-decoration: line-through;
+}
+
 #content {
   /* display: flex; */
   width: 100%;

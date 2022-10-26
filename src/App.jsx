@@ -13,27 +13,34 @@ const INITIALIZEJOBS = [
   {
     id: '1',
     content: "Job1",
-    status: false
+    status: 'isNotDone'
   },
   {
     id: '2',
     content: "Job2",
-    status: false
+    status: 'isNotDone'
   },
   {
     id: '3',
     content: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    status: false
+    status: 'isNotDone'
   },
 ]
 const App = () => {
   
   const [job, setJob] = useState ('');
-  const [cardList, setCardList] = useState(INITIALIZEJOBS);    
+    const [cardList, setCardList] = useState(INITIALIZEJOBS);
+    
   const handleCheck = (event, item, index) => {
-    let prev = [...cardList];
-    let itemIndex = prev.indexOf(item);
-    console.log(itemIndex);
+      const newStatus = item.status === 'done' ? 'isNotDone' : 'done';
+      const newState = cardList.map((items, position) => {
+        if (position === index) {
+          return ({...items, status: newStatus})
+        }
+        return items;
+      });
+      console.log(newState);
+      setCardList(newState);
   }
 
   

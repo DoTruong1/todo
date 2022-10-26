@@ -17,6 +17,7 @@ const Job = ({item, onChange, index, handleDelete}) => {
             <React.Fragment>
                 <div>
                     <input 
+                    status = {item.status}
                     item = {item}
                     id = {item.id}
                     className = "form-check-input me-1"
@@ -28,7 +29,7 @@ const Job = ({item, onChange, index, handleDelete}) => {
                     />
                 </div>
                 <div>
-                    <span id ="detail">{item.content}</span>
+                    <span id={item.status !== 'done' ? 'detail' : 'detail-done'}>{item.content}</span>
 
                 </div>
                 <div style={{    marginLeft: 'auto', marginRight: '0px'}}>
