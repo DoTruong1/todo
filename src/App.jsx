@@ -6,69 +6,47 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { v4 as uuidv4 } from "uuid";
 import { useSelector, useDispatch } from "react-redux";
-import { add, remove, checked } from "./actions/actions";
+import {add, remove, checked, onDragEnd} from "./actions/actions";
 
-// const INITIALIZEJOBS = [
-//   {
-//     id: "1",
-//     content: "Job1",
-//     status: "isNotDone",
-//   },
-//   {
-//     id: "2",
-//     content: "Job2",
-//     status: "isNotDone",
-//   },
-//   {
-//     id: "3",
-//     content:
-//       "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-//     status: "isNotDone",
-//   },
-// ];
+
 const App = () => {
   const [job, setJob] = useState("");
-  // const [cardList, setCardList] = useState(todos);
-  // const state = useSelector(selectTodos);
 
-  // const handleCheck = (event, item, index) => {
-  //   const newStatus = item.status === "done" ? "isNotDone" : "done";
-  //   const newState = cardList.map((items, position) => {
-  //     if (position === index) {
-  //       return { ...items, status: newStatus };
-  //     }
-  //     return items;
-  //   });
-  //   // console.log(newState);
-  //   setCardList(newState);
-  // };
+  function clearForm() {
+    setJob('');
+  }
 
-  const handleSubmit = (event) => {
-    console.log(event.target.props);
-  };
-
-  // const handleDelete = (position) => {
-  //   var updatedList = [...cardList];
-  //   if (position !== -1) {
-  //     updatedList.splice(position, 1);
-  //     setCardList((cardList) => updatedList);
-  //   }
-  // };
 
   // useEffect(() => {
   //   console.log(cardList);
   // }, [cardList]);
 
-  // const handleOnDragEnd = (res) => {
-  //   const items = [...cardList];
-  //   const [reorderedItem] = items.splice(res.source.index, 1);
-  //   items.splice(res.destination.index, 0, reorderedItem);
-
-  //   setCardList(items);
-  // };
-
   const cardList = useSelector((state) => state.todos);
   const dispatch = useDispatch();
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    dispatch(add(job));
+    clearForm();
+  };
+
+  const handleDelete = (item) => {
+    console.log(item);
+    dispatch(remove(item));
+  };
+
+  const handleCheck = (item) => {
+    dispatch(checked(item));
+  }
+
+  const handleOnDragEnd = (res) => {
+    const source = res.source.index;
+    const destination = res.destination.index;
+    if (source !== destination)
+      dispatch(onDragEnd(source, destination));
+  }
+
+
   const listGen = cardList.map((item, index) => (
     <Draggable key={item.id} draggableId={item.id.toString()} index={index}>
       {(provided) => (
@@ -81,9 +59,8 @@ const App = () => {
           <Job
             key={item.id}
             item={item}
-            index={index}
-            // onChange={handleCheck}
-            // handleDelete={handleDelete}
+            handleDelete={handleDelete}
+            onChecked={handleCheck}
           ></Job>
         </div>
       )}
@@ -92,14 +69,15 @@ const App = () => {
 
   return (
     <div className="app">
-      <form id="input-job" onSubmit={(e) => dispatch(handleSubmit(e))}>
+      <div>
+      <form id="input-job" onSubmit={(e) => handleSubmit(e)}>
         <input
           type="text"
           value={job}
           className="form-control"
-          // onChange={(event) => setJob(event.target.value)}
+          onChange={(event) => setJob(event.target.value)}
           placeholder="What do you want to do ;)"
-          aria-label="Recipient's username"
+          // aria-label="Recipient's username"
           aria-describedby="button-addon2"
         ></input>
         <button
@@ -109,12 +87,13 @@ const App = () => {
         >
           Add
         </button>
-      </form>
+        </form>
+      </div>
 
       <div id="content">
         <DragDropContext
           id="content"
-          // onDragEnd={handleOnDragEnd}
+          onDragEnd={handleOnDragEnd}
         >
           <Droppable droppableId="droppable">
             {(provided) => (
