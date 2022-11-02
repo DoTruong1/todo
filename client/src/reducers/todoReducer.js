@@ -1,23 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialize = [
-  {
-    id: "1",
-    content: "Job1",
-    completed: false,
-  },
-  {
-    id: "2",
-    content: "Job2",
-    completed: false,
-  },
-  {
-    id: "3",
-    content:
-      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    completed: false,
-  },
-];
+const initialize = [];
 
 const genId = (todos) => {
   const maxID = todos.reduce((maxID, todo) => Math.max(maxID, todo.id), -1);
@@ -63,6 +46,13 @@ export default function todoReducer(state = initialize, action) {
       return newState
     }
 
+    case "GETLIST":
+      {
+        return {
+          ...state,
+          state: action.data
+        }
+      }
 
     default:
       return state;

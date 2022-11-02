@@ -2,7 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Container } from 'react-bootstrap';
 import {FiTrash} from 'react-icons/fi'
-import './App.css';
+import './css/App.css';
 import { IconContext } from 'react-icons';
 
 

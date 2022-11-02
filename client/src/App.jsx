@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "./App.css";
+import "./css/App.css";
 import { useState } from "react";
 import Job from "./Jobs";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -15,12 +15,7 @@ const App = () => {
   function clearForm() {
     setJob('');
   }
-
-
-  // useEffect(() => {
-  //   console.log(cardList);
-  // }, [cardList]);
-
+  
   const cardList = useSelector((state) => state.todos);
   const dispatch = useDispatch();
 

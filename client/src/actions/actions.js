@@ -1,3 +1,5 @@
+import {GETLIST} from './constant'
+
 export const add = (content) => {
   console.log("action :" + content)
   return {
@@ -27,5 +29,12 @@ export const onDragEnd = (sourceIndex, destinationIndex) => {
       source: sourceIndex,
       destination: destinationIndex
     }
+  }
+}
+
+export const getTodoList = () => {
+  return {
+    type: GETLIST,
+    data  
   }
 }
